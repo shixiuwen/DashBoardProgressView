@@ -156,6 +156,13 @@ public class DashBoardProgressView extends FrameLayout {
 
         public DashBoardView(Context context, AttributeSet attrs) {
             super(context, attrs);
+            /*
+            * <p>Causes the Runnable to be added to the message queue.
+            * The runnable will be run on the user interface thread.</p>
+            * 使用了post后，run()中的代码会提前加载到message queue,提前于onDraw()方法的
+            * 执行,以初始化一些数据，有些数据数据是onMeasure()方法中返回的，不这么做的话无法
+            * 计算比例以适配大小
+            * */
             post(new Runnable() {
                 @Override
                 public void run() {
@@ -313,6 +320,10 @@ public class DashBoardProgressView extends FrameLayout {
 
         public PointView(Context context, AttributeSet attrs) {
             super(context, attrs);
+            /*
+            * <p>Causes the Runnable to be added to the message queue.
+            * The runnable will be run on the user interface thread.</p>
+            * */
             post(new Runnable() {
                 @Override
                 public void run() {
@@ -350,6 +361,10 @@ public class DashBoardProgressView extends FrameLayout {
 
         public ScoreTextView(Context context, AttributeSet attrs) {
             super(context, attrs);
+            /*
+            * <p>Causes the Runnable to be added to the message queue.
+            * The runnable will be run on the user interface thread.</p>
+            * */
             post(new Runnable() {
                 @Override
                 public void run() {
@@ -368,6 +383,9 @@ public class DashBoardProgressView extends FrameLayout {
             } else {
                 canvas.translate(0, Math.abs(height - reguSizeY) / 2);
             }
+            //优化，防止绘制脏布局
+            canvas.clipRect(232 / 576f * reguSizeX, 280 / 306f * reguSizeY-textPaint60.getTextSize()
+                    ,232 / 576f * reguSizeX+textPaint60.measureText(String.valueOf((int) (score + 0.5))),280 / 306f * reguSizeY);
 
             canvas.drawText(String.valueOf((int) (score + 0.5)), 232 / 576f * reguSizeX, 280 / 306f * reguSizeY, textPaint60);
         }
