@@ -126,15 +126,16 @@ public class DashBoardProgressView extends FrameLayout {
                         pointView.postInvalidate();
                         scoreTextView.postInvalidate();
                         double tempScore = score + 0.5;
-                        if (tempScore >= 600 && tempScore <= 603) {
+                        if (tempScore < 600) {
+                            scoreLever = 0;
+                            dashBoardView.postInvalidate();
+                        } else if (tempScore >= 600 && tempScore <= 603) {
                             scoreLever = 1;
                             dashBoardView.postInvalidate();
-                        }
-                        if (tempScore >= 700 && tempScore <= 703) {
+                        } else if (tempScore >= 700 && tempScore <= 703) {
                             scoreLever = 2;
                             dashBoardView.postInvalidate();
-                        }
-                        if (tempScore >= 800 && tempScore <= 803) {
+                        } else if (tempScore >= 800 && tempScore <= 803) {
                             scoreLever = 3;
                             dashBoardView.postInvalidate();
                         }
@@ -384,8 +385,8 @@ public class DashBoardProgressView extends FrameLayout {
                 canvas.translate(0, Math.abs(height - reguSizeY) / 2);
             }
             //优化，防止绘制脏布局
-            canvas.clipRect(232 / 576f * reguSizeX, 280 / 306f * reguSizeY-textPaint60.getTextSize()
-                    ,232 / 576f * reguSizeX+textPaint60.measureText(String.valueOf((int) (score + 0.5))),280 / 306f * reguSizeY);
+            canvas.clipRect(232 / 576f * reguSizeX, 280 / 306f * reguSizeY - textPaint60.getTextSize()
+                    , 232 / 576f * reguSizeX + textPaint60.measureText(String.valueOf((int) (score + 0.5))), 280 / 306f * reguSizeY);
 
             canvas.drawText(String.valueOf((int) (score + 0.5)), 232 / 576f * reguSizeX, 280 / 306f * reguSizeY, textPaint60);
         }
