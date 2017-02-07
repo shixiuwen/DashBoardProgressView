@@ -123,6 +123,9 @@ public class DashBoardProgressView extends FrameLayout {
                         Thread.sleep(50);
                         rotation += 1;
                         score += 2.222;
+                        if (score >= refreshToScore) {  //该判断非常重要，防止每次加2.22超出边界
+                            score = refreshToScore;
+                        }
                         pointView.postInvalidate();
                         scoreTextView.postInvalidate();
                         double tempScore = score + 0.5;
