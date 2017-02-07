@@ -230,36 +230,17 @@ public class DashBoardProgressView extends FrameLayout {
 
             //绘制最外框
             paint.setStrokeWidth(8 / 306f * reguSizeY);
-            canvas.save();
             canvas.drawArc(rectF, 175, 190, false, paint);
-            canvas.restore();
 
-            //绘制内边框1
+            //绘制内边框1,2,3,4,5,6分段(带有断点的内边框)
             paint.setStrokeCap(Paint.Cap.BUTT);
             paint.setStrokeWidth(16 / 306f * reguSizeY);
-            canvas.save();
             canvas.drawArc(rectF2, 175, 4, false, paint);
-            canvas.restore();
-            //绘制内边框2
-            canvas.save();
             canvas.drawArc(rectF2, 181, 43, false, paint);
-            canvas.restore();
-            //绘制内边框3
-            canvas.save();
             canvas.drawArc(rectF2, 226, 43, false, paint);
-            canvas.restore();
-            //绘制内边框4
-            canvas.save();
             canvas.drawArc(rectF2, 271, 43, false, paint);
-            canvas.restore();
-            //绘制内边框5
-            canvas.save();
             canvas.drawArc(rectF2, 316, 43, false, paint);
-            canvas.restore();
-            //绘制内边框6
-            canvas.save();
             canvas.drawArc(rectF2, 1, 4, false, paint);
-            canvas.restore();
 
             //绘制大圆点
             paint.setStrokeWidth(6 / 306f * reguSizeY);
